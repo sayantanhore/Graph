@@ -5,6 +5,21 @@ function removeUnit(f){
 }
 
 $(document).ready(function(){
+    var x = 0;
+    var myObj = {
+        x: 1,
+        add: function(y){
+                var that = this;
+                function addition(y){
+                    return (this.x + y);
+                }
+                return addition(y);
+        }
+    }
+
+    console.log(myObj.add(2))
+    
+    
     $("#display").append($("<div></div>").addClass("viewport")
                                         .on("mousedown", function(e){
                                             var left = parseFloat(removeUnit($(this).css("left")));
@@ -60,12 +75,7 @@ function init(){
                             .attr("width", w)
                             .attr("height", h)
                             .attr("viewBox", "0 0 " + w + " " + h )
-                            .on("mousedown", function(){
-                                d3.select("#display").style("cursor", "move");
-                            })
-                            .on("mouseup", function(){
-                                d3.select("#display").style("cursor", "default"); 
-                            });
+                            
     
     CreateGraph.createGraph(svgContainer, w, h);
     

@@ -76,15 +76,33 @@ var CreateGraph = {
     },
     createGrid: function(){
         this.grid = this.group.append("rect")
-                            .attr({
-                                "x": 0,
-                                "y": 0,
-                                "width": this.w,
-                                "height": this.h,
-                                "stroke": "black",
-                                "stroke-width": "2",
-                                "fill": "url(#large_block)"
-                            });
+        this.grid.attr({
+                        "x": 0,
+                        "y": 0,
+                        "width": this.w,
+                        "height": this.h,
+                        "stroke": "black",
+                        "stroke-width": "2",
+                        "fill": "url(#large_block)"
+                    });
+        var that = this;
+        this.grid
+            .on("mousedown", function(){
+                d3.select(this).style("cursor", "move");
+            })
+            .on("mouseup", function(){
+                d3.select(this).style("cursor", "default");
+            })
+            .on("mouseover", function(){
+                var 
+                var mouse_pos = d3.mouse(this);
+                if ((that.w - mouse_pos[0]) < 5){
+                    d3.select(this).style("cursor", "n-resize");
+                }
+                if ((mouse_pos[0] < parseFloat(that.w) / 2) && (mouse_pos[1] < parseFloat(that.h) / 2)){
+                    
+                }
+            });
                             
     },
     generateGraph: function(){
