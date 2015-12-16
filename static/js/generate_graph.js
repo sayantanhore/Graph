@@ -94,7 +94,7 @@ var CreateGraph = {
                 d3.select(this).style("cursor", "default");
             })
             .on("mouseover", function(){
-                var 
+                 
                 var mouse_pos = d3.mouse(this);
                 if ((that.w - mouse_pos[0]) < 5){
                     d3.select(this).style("cursor", "n-resize");

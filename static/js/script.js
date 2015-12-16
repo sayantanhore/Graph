@@ -1,82 +1,65 @@
-"use strict";
-
-function removeUnit(f){
-    return f.replace("px", "")
-}
+'use strict';
 
 $(document).ready(function(){
-    var x = 0;
-    var myObj = {
-        x: 1,
-        add: function(y){
-                var that = this;
-                function addition(y){
-                    return (this.x + y);
-                }
-                return addition(y);
-        }
-    }
-
-    console.log(myObj.add(2))
+    console.log("Ready");
     
+    // Initiate properties
+    var __globals = Graph.globals;
+    __globals.setScreenDim($(window));
     
-    $("#display").append($("<div></div>").addClass("viewport")
-                                        .on("mousedown", function(e){
-                                            var left = parseFloat(removeUnit($(this).css("left")));
-                                            console.log(left);
-                                            var top = parseFloat(removeUnit($(this).css("top")));
-                                            console.log(top);
-                                            console.log("Hello 2")
-                                            var offset_x = e.pageX - left;
-                                            var offset_y = e.pageY - top;
-                                            $(this).parent().data("offset", [offset_x, offset_y]);
-                                            $(this).parent().data("dragging", true);
-                                            
-                                        })
-                                        .on("mousemove", function(e){
-                                            var parent = $(this).parent();
-                                            if ((parent.data("offset") !== undefined) && (parent.data("dragging") === true)){
-                                                var offset_x = parent.data("offset")[0];
-                                                var offset_y = parent.data("offset")[1];
-                                                console.log(offset_x)
-                                                console.log(offset_y)
-                                                
-                                                var left = e.pageX -  offset_x;
-                                                var top = e.pageY -  offset_y;
-                                                
-                                                $(this).css("left", left + "px");
-                                                $(this).css("top", top + "px");
-                                            }  
-                                        })
-                                        .on("mouseup", function(){
-                                            $(this).parent().data("offset", []);
-                                            $(this).parent().data("dragging", false);
-                                        })
-                        );
-    init();
+    var svg = d3.select('#container').append('svg')
+        .attr({
+            x: 0,
+            y: 0,
+            width: __globals.getScreenDim().screenWidth,
+            height: __globals.getScreenDim().screenHeight
+        });
+        
+    var defs = svg.append('defs');
+    var smallBlock = defs.append('pattern')
+        .attr({
+            'id': 'small_block',
+            'patternUnits': 'userSpaceOnUse',
+            'width': __globals.getBlockDim().smallBlockDim,
+            'height': __globals.getBlockDim().smallBlockDim
+        })
+        .append('path')
+        .attr({
+            'fill': 'none',
+            'stroke': 'gray',
+            'stroke-width': '1',
+            'd': __globals.createPathString(__globals.getBlockDim().smallBlockDim)
+        });
+        
+    var largeBlock = defs.append('pattern')
+        .attr({
+            'id': 'large_block',
+            'patternUnits': 'userSpaceOnUse',
+            'width': __globals.getBlockDim().largeBlockDim,
+            'height': __globals.getBlockDim().largeBlockDim
+        });
+        largeBlock.append('rect')
+        .attr({
+            'width': '100',
+            'height': '100',
+            'fill': 'url(#small_block)'
+        });
+        largeBlock.append('path')
+        .attr({
+            'fill': 'none',
+            'stroke': 'gray',
+            'stroke-width': '1.5',
+            'd': __globals.createPathString(__globals.getBlockDim().largeBlockDim)
+        });
+        
+    svg.append('rect')
+        .attr({
+            'x': 0,
+            'y': 0,
+            'width': __globals.getScreenDim().screenWidth,
+            'height': __globals.getScreenDim().screenHeight,
+            'stroke': 'black',
+            'stroke-width': 2,
+            'fill': 'url(#large_block)'
+        });
 });
-
-
-function init(){
-    $("#display div.viewport").css("left", function(){
-        return parseFloat((removeUnit($(this).parent().css("width")) - removeUnit(($(this).css("width")))) / 2) + "px";
-    });
-    $("#display div.viewport").css("top", function(){
-        return parseFloat((removeUnit($(this).parent().css("height")) - removeUnit(($(this).css("height")))) / 2) + "px";
-    });
-    var viewport = d3.select("#display div.viewport").node().getBoundingClientRect();
-    var w = viewport.width;
-    var h = viewport.height;
-
-    console.log(w);
-    console.log(h);
-    
-    var svgContainer = d3.select("#display div.viewport").append("svg")
-                            .attr("width", w)
-                            .attr("height", h)
-                            .attr("viewBox", "0 0 " + w + " " + h )
-                            
-    
-    CreateGraph.createGraph(svgContainer, w, h);
-    
-}
