@@ -42,7 +42,21 @@ Graph.globals = (function(){
 		
 		createPathString: function(dim){
 			return 'M ' + dim + ' 0 L 0 0 0 ' + dim
+		},
+		
+		createAxisX: function(){
+			var startY = Math.ceil((parseFloat(screenHeight) / 2) / largeBlockDim);
+			
+			return 'M 0 ' + (startY * largeBlockDim) + ' H ' + screenWidth;
+		},
+		
+		createAxisY: function(){
+			console.log(screenWidth)
+			var startX = parseInt((parseFloat(screenWidth) / 2) / largeBlockDim);
+			console.log(startX);
+			return 'M ' + (startX * largeBlockDim) + ' 0 V ' + screenHeight;
 		}
+		
 	}
 	
 	return callables;	

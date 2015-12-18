@@ -6,6 +6,10 @@ $(document).ready(function(){
     // Initiate properties
     var __globals = Graph.globals;
     __globals.setScreenDim($(window));
+    __globals.setBlockDim({
+        'smallBlockDim': parseInt(__globals.getScreenDim().screenWidth) / 100,
+        'largeBlockDim': parseInt(__globals.getScreenDim().screenWidth) / 10
+    });
     
     var svg = d3.select('#container').append('svg')
         .attr({
@@ -40,8 +44,8 @@ $(document).ready(function(){
         });
         largeBlock.append('rect')
         .attr({
-            'width': '100',
-            'height': '100',
+            'width': __globals.getBlockDim().largeBlockDim,
+            'height': __globals.getBlockDim().largeBlockDim,
             'fill': 'url(#small_block)'
         });
         largeBlock.append('path')
@@ -62,4 +66,27 @@ $(document).ready(function(){
             'stroke-width': 2,
             'fill': 'url(#large_block)'
         });
+    svg.append('path')
+        .attr({
+            'stroke': 'gray',
+            'stroke-width': '2',
+            'd': __globals.createAxisX()
+        }); 
+        
+    svg.append('path')
+        .attr({
+            'stroke': 'gray',
+            'stroke-width': '2',
+            'd': __globals.createAxisY()
+        }); 
+        
+    svg.append('text')
+        .attr({
+            'x': '100px',
+            'y': '200px',
+            'font-size': '14px',
+            'font-family': 'monospace',
+            'fill': 'blue'
+        })
+        .text(123333);
 });
