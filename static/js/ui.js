@@ -9,7 +9,7 @@ Graph.ui = (function(){
     var axisX = null;
     var axisY = null;
     
-    function init(){
+    function init(container){
         // Initiate properties
         var __globals = Graph.globals;
         __globals.setScreenDim($(window));
@@ -19,7 +19,7 @@ Graph.ui = (function(){
         });
         
         // Create SVG container
-        var svg = d3.select('#container').append('svg')
+        var svg = d3.select(container).append('svg')
             .attr({
                 x: 0,
                 y: 0,
@@ -103,82 +103,43 @@ Graph.ui = (function(){
             var oneVisibleUnit = __globals.getBlockDim().largeBlockDim;
             var displacement = parseFloat(__globals.getBlockDim().smallBlockDim) / 2;
             
-            // Origin
-            svg.append('text')
+            function placeTextElement(x, y, dx, dy, txt){
+                svg.append('text')
                     .attr({
-                        'x': origin.x,
-                        'y': origin.y,
-                        'dx': displacement,
-                        'dy': displacement,
+                        'x': x,
+                        'y': y,
+                        'dx': dx,
+                        'dy': dy,
                         'font-size': 7,
                         'font-family': 'courier',
                         'dominant-baseline': 'central',
                         'text-anchor': 'middle'
                     })
-                    .text(0)
+                    .text(txt)
+            }
+            
+            // Origin
+            placeTextElement(origin.x, origin.y, displacement, displacement, "0");
+            
             
             // AxisX
             for (var label = oneVisibleUnit; label < halfScreenWidth; label += oneVisibleUnit){
-                
                 // Positive
-                svg.append('text')
-                    .attr({
-                        'x': origin.x + label,
-                        'y': origin.y,
-                        'dx': displacement,
-                        'dy': displacement,
-                        'font-size': 7,
-                        'font-family': 'courier',
-                        'dominant-baseline': 'central',
-                        'text-anchor': 'middle'
-                    })
-                    .text(Math.ceil(label / 100));
+                placeTextElement(origin.x + label, origin.y, displacement, displacement, Math.ceil(label / 100));
                 
                 // Negative
-                svg.append('text')
-                    .attr({
-                        'x': origin.x - label,
-                        'y': origin.y,
-                        'dx': displacement,
-                        'dy': displacement,
-                        'font-size': 7,
-                        'font-family': 'courier',
-                        'dominant-baseline': 'central',
-                        'text-anchor': 'middle'
-                    })
-                    .text("-" + Math.ceil(label / 100))
+                placeTextElement(origin.x - label, origin.y, displacement, displacement, "-" + Math.ceil(label / 100));
+                
             }
             
             // AxisY
             for (var label = oneVisibleUnit; label < halfScreenHeight; label += oneVisibleUnit){
-                
                 // Positive
-                svg.append('text')
-                    .attr({
-                        'x': origin.x,
-                        'y': origin.y - label,
-                        'dx': displacement,
-                        'dy': displacement,
-                        'font-size': 7,
-                        'font-family': 'courier',
-                        'dominant-baseline': 'central',
-                        'text-anchor': 'middle'
-                    })
-                    .text(Math.ceil(label / 100));
+                placeTextElement(origin.x, origin.y - label, displacement, displacement, Math.ceil(label / 100));
+                
                     
                 // Negative
-                svg.append('text')
-                    .attr({
-                        'x': origin.x,
-                        'y': origin.y + label,
-                        'dx': displacement,
-                        'dy': displacement,
-                        'font-size': 7,
-                        'font-family': 'courier',
-                        'dominant-baseline': 'central',
-                        'text-anchor': 'middle'
-                    })
-                    .text("-" + Math.ceil(label / 100))
+                placeTextElement(origin.x, origin.y + label, displacement, displacement, "-" + Math.ceil(label / 100));
             }
             
         })();
