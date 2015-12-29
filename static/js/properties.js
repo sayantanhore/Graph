@@ -23,9 +23,9 @@ Graph.globals = (function(){
 		largeBlockDim = 100;
         
         smallBlockStrokeWidth = 0.2;
-        largeBlockStrokeWidth = 0.5;
+        largeBlockStrokeWidth = 0.4;
         gridStrokeWidth = 2;
-        axisStrokeWidth = 1;
+        axisStrokeWidth = 0.5;
 	})();
 	
 	var callables = {
