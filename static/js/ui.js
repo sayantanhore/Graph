@@ -136,19 +136,18 @@ Graph.ui = (function(){
             for (var label = oneVisibleUnit; label < halfScreenHeight; label += oneVisibleUnit){
                 // Positive
                 placeTextElement(origin.x, origin.y - label, displacement, displacement, Math.ceil(label / 100));
-                
-                    
+                  
                 // Negative
                 placeTextElement(origin.x, origin.y + label, displacement, displacement, "-" + Math.ceil(label / 100));
             }
             
-        })();
-        
+        })(); 
     }
     
     // Create UI component object
     return {
         init: init,
+        
         components: {
             grid: {
                 get: function(){
@@ -184,5 +183,4 @@ Graph.ui = (function(){
             },
         }
     };
-    
 })();
