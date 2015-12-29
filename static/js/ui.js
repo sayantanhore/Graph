@@ -41,7 +41,7 @@ Graph.ui = (function(){
             .append('path')
             .attr({
                 'fill': 'none',
-                'stroke': 'gray',
+                'stroke': 'green',
                 'stroke-width': __globals.getStrokeWidth().smallBlock,
                 'd': __globals.createPathString(__globals.getBlockDim().smallBlockDim)
             });
@@ -62,7 +62,7 @@ Graph.ui = (function(){
             largeBlock.append('path')
             .attr({
                 'fill': 'none',
-                'stroke': 'gray',
+                'stroke': 'green',
                 'stroke-width': __globals.getStrokeWidth().largeBlock,
                 'd': __globals.createPathString(__globals.getBlockDim().largeBlockDim)
             });
@@ -82,7 +82,7 @@ Graph.ui = (function(){
         // Create AxiX
         axisX = svg.append('path')
             .attr({
-                'stroke': 'gray',
+                'stroke': 'green',
                 'stroke-width': __globals.getStrokeWidth().axis,
                 'd': __globals.getPathAxisX()
             }); 
@@ -90,7 +90,7 @@ Graph.ui = (function(){
         // Create AxiY    
         axisY = svg.append('path')
             .attr({
-                'stroke': 'gray',
+                'stroke': 'green',
                 'stroke-width': __globals.getStrokeWidth().axis,
                 'd': __globals.getPathAxisY()
             });     
