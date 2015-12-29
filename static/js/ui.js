@@ -93,7 +93,96 @@ Graph.ui = (function(){
                 'stroke': 'green',
                 'stroke-width': __globals.getStrokeWidth().axis,
                 'd': __globals.getPathAxisY()
-            });     
+            });
+        
+        // Create labels for Axis
+        (function generateAxisLabels(){
+            var origin = __globals.getOrigin();
+            var halfScreenWidth = parseFloat(__globals.getScreenDim().screenWidth) / 2;
+            var halfScreenHeight = parseFloat(__globals.getScreenDim().screenHeight) / 2;
+            var oneVisibleUnit = __globals.getBlockDim().largeBlockDim;
+            var displacement = parseFloat(__globals.getBlockDim().smallBlockDim) / 2;
+            
+            // Origin
+            svg.append('text')
+                    .attr({
+                        'x': origin.x,
+                        'y': origin.y,
+                        'dx': displacement,
+                        'dy': displacement,
+                        'font-size': 7,
+                        'font-family': 'courier',
+                        'dominant-baseline': 'central',
+                        'text-anchor': 'middle'
+                    })
+                    .text(0)
+            
+            // AxisX
+            for (var label = oneVisibleUnit; label < halfScreenWidth; label += oneVisibleUnit){
+                
+                // Positive
+                svg.append('text')
+                    .attr({
+                        'x': origin.x + label,
+                        'y': origin.y,
+                        'dx': displacement,
+                        'dy': displacement,
+                        'font-size': 7,
+                        'font-family': 'courier',
+                        'dominant-baseline': 'central',
+                        'text-anchor': 'middle'
+                    })
+                    .text(Math.ceil(label / 100));
+                
+                // Negative
+                svg.append('text')
+                    .attr({
+                        'x': origin.x - label,
+                        'y': origin.y,
+                        'dx': displacement,
+                        'dy': displacement,
+                        'font-size': 7,
+                        'font-family': 'courier',
+                        'dominant-baseline': 'central',
+                        'text-anchor': 'middle'
+                    })
+                    .text("-" + Math.ceil(label / 100))
+            }
+            
+            // AxisY
+            for (var label = oneVisibleUnit; label < halfScreenHeight; label += oneVisibleUnit){
+                
+                // Positive
+                svg.append('text')
+                    .attr({
+                        'x': origin.x,
+                        'y': origin.y - label,
+                        'dx': displacement,
+                        'dy': displacement,
+                        'font-size': 7,
+                        'font-family': 'courier',
+                        'dominant-baseline': 'central',
+                        'text-anchor': 'middle'
+                    })
+                    .text(Math.ceil(label / 100));
+                    
+                // Negative
+                svg.append('text')
+                    .attr({
+                        'x': origin.x,
+                        'y': origin.y + label,
+                        'dx': displacement,
+                        'dy': displacement,
+                        'font-size': 7,
+                        'font-family': 'courier',
+                        'dominant-baseline': 'central',
+                        'text-anchor': 'middle'
+                    })
+                    .text("-" + Math.ceil(label / 100))
+            }
+            
+        })();
+        
     }
     
     // Create UI component object
