@@ -3,10 +3,10 @@
 var Graph = Graph || {};
 
 Graph.globals = (function(){
-	var screenWidth = null;
-	var screenHeight = null;
-	var smallBlockDim = null;
-	var largeBlockDim = null;
+    var screenWidth = null;
+    var screenHeight = null;
+    var smallBlockDim = null;
+    var largeBlockDim = null;
     
     var origin = {
         x: null,
