@@ -121,7 +121,6 @@ Graph.ui = (function(){
             // Origin
             placeTextElement(origin.x, origin.y, displacement, displacement, "0");
             
-            
             // AxisX
             for (var label = oneVisibleUnit; label < halfScreenWidth; label += oneVisibleUnit){
                 // Positive
@@ -129,7 +128,6 @@ Graph.ui = (function(){
                 
                 // Negative
                 placeTextElement(origin.x - label, origin.y, displacement, displacement, "-" + Math.ceil(label / 100));
-                
             }
             
             // AxisY
@@ -140,7 +138,6 @@ Graph.ui = (function(){
                 // Negative
                 placeTextElement(origin.x, origin.y + label, displacement, displacement, "-" + Math.ceil(label / 100));
             }
-            
         })(); 
     }
     
