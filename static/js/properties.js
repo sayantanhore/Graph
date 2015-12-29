@@ -17,10 +17,10 @@ Graph.globals = (function(){
 		smallBlockDim = 10;
 		largeBlockDim = 100;
         
-        smallBlockStrokeWidth = 1;
-        largeBlockStrokeWidth = 1.5;
+        smallBlockStrokeWidth = 0.2;
+        largeBlockStrokeWidth = 0.5;
         gridStrokeWidth = 2;
-        axisStrokeWidth = 2.5;
+        axisStrokeWidth = 1;
 	})();
 	
 	var callables = {
