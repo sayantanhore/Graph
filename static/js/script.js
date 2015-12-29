@@ -5,7 +5,7 @@ $(document).ready(function(){
     
     var __ui = Graph.ui;
     
-    __ui.init();
+    __ui.init('#container');
     var grid = __ui.components.grid;
     
     var axis = __ui.components.axis;
