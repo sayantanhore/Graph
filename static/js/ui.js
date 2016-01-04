@@ -6,13 +6,20 @@ Graph.ui = (function(){
     
     // Declare UI components
     var grid = null;
+    
     var axisX = null;
     var axisY = null;
+    
+    var lblOrigin = null;
+    var lblAxisXPositive = [];
+    var lblAxisXNegative = [];
+    var lblAxisYPositive = [];
+    var lblAxisYNegative = [];
     
     function init(container){
         // Initiate properties
         var __globals = Graph.globals;
-        __globals.setScreenDim($(window));
+        __globals.setScreenDim($(container));
         __globals.setBlockDim({
             'smallBlockDim': parseInt(__globals.getScreenDim().screenWidth) / 100,
             'largeBlockDim': parseInt(__globals.getScreenDim().screenWidth) / 10
@@ -104,7 +111,7 @@ Graph.ui = (function(){
             var displacement = parseFloat(__globals.getBlockDim().smallBlockDim) / 2;
             
             function placeTextElement(x, y, dx, dy, txt){
-                svg.append('text')
+                var txt = svg.append('text')
                     .attr({
                         'x': x,
                         'y': y,
@@ -116,27 +123,28 @@ Graph.ui = (function(){
                         'text-anchor': 'middle'
                     })
                     .text(txt)
+                return txt;
             }
             
             // Origin
-            placeTextElement(origin.x, origin.y, displacement, displacement, "0");
+            lblOrigin = placeTextElement(origin.x, origin.y, displacement, displacement, "0");
             
             // AxisX
             for (var label = oneVisibleUnit; label < halfScreenWidth; label += oneVisibleUnit){
                 // Positive
-                placeTextElement(origin.x + label, origin.y, displacement, displacement, Math.ceil(label / 100));
+                lblAxisXPositive.push(placeTextElement(origin.x + label, origin.y, displacement, displacement, Math.ceil(label / 100)));
                 
                 // Negative
-                placeTextElement(origin.x - label, origin.y, displacement, displacement, "-" + Math.ceil(label / 100));
+                lblAxisXNegative.push(placeTextElement(origin.x - label, origin.y, displacement, displacement, "-" + Math.ceil(label / 100)));
             }
             
             // AxisY
             for (var label = oneVisibleUnit; label < halfScreenHeight; label += oneVisibleUnit){
                 // Positive
-                placeTextElement(origin.x, origin.y - label, displacement, displacement, Math.ceil(label / 100));
+                lblAxisYPositive.push(placeTextElement(origin.x, origin.y - label, displacement, displacement, Math.ceil(label / 100)));
                   
                 // Negative
-                placeTextElement(origin.x, origin.y + label, displacement, displacement, "-" + Math.ceil(label / 100));
+                lblAxisYNegative.push(placeTextElement(origin.x, origin.y + label, displacement, displacement, "-" + Math.ceil(label / 100)));
             }
         })(); 
     }
@@ -178,6 +186,95 @@ Graph.ui = (function(){
                     axisY.attr('visibility', 'hidden');
                 }
             },
+            
+            axisLabels: {
+                geLblOrigin: function(){
+                    return lblOrigin;
+                },
+                
+                getLblAxisX: function(){
+                    return {
+                        positive: lblAxisXPositive,
+                        negative: lblAxisXNegative
+                    }
+                },
+                
+                getLblAxisY: function(){
+                    return {
+                        positive: lblAxisYPositive,
+                        negative: lblAxisYNegative
+                    }
+                },
+                
+                getLblsAxis: function(){
+                    return {
+                        origin: this.getLblOrigin,
+                        axisX: this.getLblAxisX,
+                        axisY: this.getLblAxisY
+                    }
+                },
+                
+                showLbl: function(element){
+                      
+                },
+                
+                hideLbl: function(element){
+                    if (element === 'o'){
+                        this.hideLblOrigin();
+                    }
+                },
+                
+                hideLblOrigin: function(){
+                    lblOrigin.attr('visibility', 'hidden');
+                },
+                hideLblAxisX: function(direction){
+                    if (typeof direction === 'undefined'){
+                        lblAxisXPositive.map(function(value){
+                            value.attr('visibility', 'hidden')
+                        });
+                        lblAxisXNegative.map(function(value){
+                            value.attr('visibility', 'hidden')
+                        });
+                    }
+                    else if (direction === '+'){
+                        lblAxisXPositive.map(function(value){
+                            value.attr('visibility', 'hidden')
+                        });
+                    }
+                    else if (direction === '-'){
+                        lblAxisXNegative.map(function(value){
+                            value.attr('visibility', 'hidden')
+                        });
+                    }
+                },
+                
+                hideLblAxisY: function(direction){
+                    if (typeof direction === 'undefined'){
+                        lblAxisYPositive.map(function(value){
+                            value.attr('visibility', 'hidden')
+                        });
+                        lblAxisYNegative.map(function(value){
+                            value.attr('visibility', 'hidden')
+                        });
+                    }
+                    else if (direction === '+'){
+                        lblAxisYPositive.map(function(value){
+                            value.attr('visibility', 'hidden')
+                        });
+                    }
+                    else if (direction === '-'){
+                        lblAxisYNegative.map(function(value){
+                            value.attr('visibility', 'hidden')
+                        });
+                    }
+                },
+                
+                hideLblAxis: function(){
+                    axisLabels.hideOrigin();
+                    axisLabels.hideLblAxisX();
+                    axisLabels.hideLblAxisY()
+                }
+            }
         }
     };
 })();
