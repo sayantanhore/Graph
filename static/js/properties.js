@@ -29,9 +29,9 @@ Graph.globals = (function(){
     })();
 
     var callables = {
-        setScreenDim: function($window){
-            screenWidth = $window.width();
-            screenHeight = $window.height();
+        setScreenDim: function($container){
+            screenWidth = $container.width();
+            screenHeight = $container.height();
         },
         
         getScreenDim: function(){
