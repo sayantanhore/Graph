@@ -1,0 +1,23 @@
+{
+  "name": "Graph",
+  "description": "This is a project for plotting graphs for mathematical equations. It is being built with SVG. Right now it is just a skeleton.",
+  
+  "dependencies": {
+      "jquery": ">=1.11.0",
+      "d3": ">=3.5.10"
+  },
+  "authors": [
+    "Sayantan Hore"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/sayantanhore/Graph",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

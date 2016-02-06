@@ -1,0 +1,26 @@
+{
+  "name": "Graph",
+  "version": "1.0.0",
+  "description": "This is a project for plotting graphs for mathematical equations. It is being built with SVG. Right now it is just a skeleton.",
+  "main": "server.js",
+  "scripts": {
+    "get-client-libs": "bower install",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sayantanhore/Graph.git"
+  },
+  "keywords": [],
+  "author": "Sayantan Hore",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sayantanhore/Graph/issues"
+  },
+  "homepage": "https://github.com/sayantanhore/Graph#readme",
+  "devDependencies": {
+    "clear": "0.0.1",
+    "express": "^4.13.4"
+  }
+}
