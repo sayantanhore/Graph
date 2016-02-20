@@ -5,8 +5,9 @@
   "main": "server.js",
   "scripts": {
     "get-client-libs": "bower install",
+    "unit-test-client": "./node_modules/.bin/gulp unit-test-client",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,16 @@
   "homepage": "https://github.com/sayantanhore/Graph#readme",
   "devDependencies": {
     "clear": "0.0.1",
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "mocha": "latest",
+    "chai": "latest",
+    "phantomjs-prebuilt": "latest",
+    "mocha-phantomjs": "latest",
+    "jshint": "latest",
+    "gulp": "latest",
+    "gulp-mocha": "latest",
+    "gulp-jshint": "latest",
+    "gulp-watch": "latest",
+    "gulp-mocha-phantomjs": "latest"
   }
 }
