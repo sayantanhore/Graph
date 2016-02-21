@@ -21,6 +21,6 @@
 	});
     */
     var server = app.listen(process.env.PORT || 3200, function(){
-        console.log("Listening @ " + (process.env.PORT || 3200)
+        console.log("Listening @ " + (process.env.PORT || 3200));
     });
 })();
