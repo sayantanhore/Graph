@@ -20,6 +20,9 @@
     "url": "https://github.com/sayantanhore/Graph/issues"
   },
   "homepage": "https://github.com/sayantanhore/Graph#readme",
+  "dependencies": {
+      "clear": "0.0.1"
+  },
   "devDependencies": {
     "clear": "0.0.1",
     "express": "^4.13.4",
