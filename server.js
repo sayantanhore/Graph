@@ -15,7 +15,12 @@
 		res.sendFile(__dirname + '/templates/index.html');
 	});
     
+    /*
     var server = app.listen('3200', function(){
 		console.log("Listening @ " + 3200)
 	});
+    */
+    var server = app.listen(process.env.PORT || 3200, function(){
+        console.log("Listening @ " + (process.env.PORT || 3200)
+    });
 })();
