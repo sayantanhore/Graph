@@ -1,6 +1,9 @@
 {
   "name": "Graph",
   "version": "1.0.0",
+  "engines": {
+      "node": "4.2.0"
+  },
   "description": "This is a project for plotting graphs for mathematical equations. It is being built with SVG. Right now it is just a skeleton.",
   "main": "server.js",
   "scripts": {
