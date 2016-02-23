@@ -6,11 +6,17 @@ Graph.ui = Graph.ui || {};
 
 Graph.ui.Grid = (function(__svgFact, __component, __globals){
     var containerDim = {};
+    var blockDim = {};
     var compObj = Object.create(__component);
     
     function setContainerDim(container){
         containerDim.width = $(container).width();
         containerDim.height = $(container).height();
+    };
+    
+    function setBlockDim(container){
+        blockDim.small = parseFloat(containerDim.width / __globals.getBlockDimFactor().small);
+        blockDim.large = parseFloat(containerDim.width / __globals.getBlockDimFactor().large);
     };
     
     function createDefs(appendTo){
@@ -22,15 +28,15 @@ Graph.ui.Grid = (function(__svgFact, __component, __globals){
         var smallBlock = __svgFact.attachElement("pattern", appendTo, {
             'id': 'small_block',
             'patternUnits': 'userSpaceOnUse',
-            'width': __globals.getBlockDim().smallBlockDim,
-            'height': __globals.getBlockDim().smallBlockDim
+            'width': blockDim.small,
+            'height': blockDim.small
         });
         
         var smallBlockPath = __svgFact.attachElement("path", smallBlock, {
             'fill': 'none',
             'stroke': 'green',
             'stroke-width': __globals.getStrokeWidth().smallBlock,
-            'd': __globals.createPathString(__globals.getBlockDim().smallBlockDim)
+            'd': __globals.createPathString(blockDim.small)
         });
     };
     
@@ -38,13 +44,13 @@ Graph.ui.Grid = (function(__svgFact, __component, __globals){
         var largeBlock = __svgFact.attachElement("pattern", appendTo, {
             'id': 'large_block',
             'patternUnits': 'userSpaceOnUse',
-            'width': __globals.getBlockDim().largeBlockDim,
-            'height': __globals.getBlockDim().largeBlockDim
+            'width': blockDim.large,
+            'height': blockDim.large
         });
         
         var largeBlockUnitCover = __svgFact.attachElement("rect", largeBlock, {
-            'width': __globals.getBlockDim().largeBlockDim,
-            'height': __globals.getBlockDim().largeBlockDim,
+            'width': blockDim.large,
+            'height': blockDim.large,
             'fill': 'url(#small_block)'
         });
         
@@ -52,7 +58,7 @@ Graph.ui.Grid = (function(__svgFact, __component, __globals){
             'fill': 'none',
             'stroke': 'green',
             'stroke-width': __globals.getStrokeWidth().largeBlock,
-            'd': __globals.createPathString(__globals.getBlockDim().largeBlockDim)
+            'd': __globals.createPathString(blockDim.large)
         })
     };
     
@@ -80,6 +86,7 @@ Graph.ui.Grid = (function(__svgFact, __component, __globals){
     
     function init(appendTo){
         setContainerDim(appendTo);
+        setBlockDim(appendTo);
         var svgContainer = createSVGContainer(appendTo);
         var defs = createDefs(svgContainer);
         var rect = svgContainer.append('rect')

@@ -3,8 +3,8 @@
 var Graph = Graph || {};
 
 Graph.globals = (function(){
-    var smallBlockDim = 10;
-    var largeBlockDim = 100;
+    var smallBlockDimFactor = 120;
+    var largeBlockDimFactor = 12;
     var smallBlockStrokeWidth = 0.2;
     var largeBlockStrokeWidth = 0.4;
     var gridStrokeWidth = 2;
@@ -15,10 +15,10 @@ Graph.globals = (function(){
     };
     
     return {
-        getBlockDim: function(){
+        getBlockDimFactor: function(){
             return {
-                smallBlockDim: smallBlockDim,
-                largeBlockDim: largeBlockDim
+                small: smallBlockDimFactor,
+                large: largeBlockDimFactor
             }
         },
         
