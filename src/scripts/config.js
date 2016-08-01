@@ -1,9 +1,10 @@
 // RequireJS config
 
 requirejs.config({
-  baseUrl: '../../',
+  baseUrl: '/',
   paths: {
-    jquery: 'bower_components/jquery/dist/jquery',
-    d3: 'bower_components/d3/d3'
+    jquery: 'vendor/jquery/dist/jquery',
+    d3: 'vendor/d3/d3',
+    main: 'scripts/main'
   }
 });
