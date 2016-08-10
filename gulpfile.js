@@ -5,7 +5,7 @@ const karmaServer = require('karma').Server;
 
 
 gulp.task('lint', () => {
-  return gulp.src(['src/**/*.js', '!node_modules/**'])
+  return gulp.src(['src/**/*.js', '!node_modules/**', '!src/scripts/bundle.js'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
@@ -15,6 +15,10 @@ gulp.task('sass', () => {
   return sass('src/stylesheets/**/*.scss')
     .on('error', sass.logError)
     .pipe(gulp.dest('src/stylesheets/'));
+});
+
+gulp.task('build', () => {
+
 });
 
 gulp.task('watch', () => {
