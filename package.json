@@ -4,6 +4,7 @@
   "description": "A simple mathematical plotting tool.",
   "main": "server.js",
   "scripts": {
+    "serve": "gulp serve",
     "test": "eslint *.js",
     "lint": "eslint test.js",
     "build-js": "browserify src/scripts/main.js -o src/scripts/bundle.js"
@@ -17,6 +18,7 @@
   "author": "Sayantan Hore",
   "license": "MIT",
   "devDependencies": {
+    "browser-sync": "^2.14.0",
     "browserify": "^13.1.0",
     "clear": "0.0.1",
     "eslint": "^3.1.1",
@@ -24,13 +26,19 @@
     "eslint-plugin-import": "^1.12.0",
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
-    "gulp-ruby-sass": "^2.0.6",
+    "gulp-nodemon": "^2.1.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
     "jasmine-core": "^2.4.1",
     "karma": "^1.1.2",
     "karma-chrome-launcher": "^1.0.1",
     "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "^1.0.2",
-    "karma-safari-launcher": "^1.0.0"
+    "karma-safari-launcher": "^1.0.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
     "d3": "^4.2.1",
