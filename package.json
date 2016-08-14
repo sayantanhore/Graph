@@ -4,10 +4,8 @@
   "description": "A simple mathematical plotting tool.",
   "main": "server.js",
   "scripts": {
-    "serve": "gulp serve",
-    "test": "eslint *.js",
-    "lint": "eslint test.js",
-    "build-js": "browserify src/scripts/main.js -o src/scripts/bundle.js"
+    "test": "gulp test",
+    "serve": "gulp serve"
   },
   "keywords": [
     "graph",
@@ -33,12 +31,14 @@
     "gulp-util": "^3.0.7",
     "jasmine-core": "^2.4.1",
     "karma": "^1.1.2",
+    "karma-browserify": "^5.1.0",
     "karma-chrome-launcher": "^1.0.1",
     "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "^1.0.2",
     "karma-safari-launcher": "^1.0.0",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
   },
   "dependencies": {
     "d3": "^4.2.1",
