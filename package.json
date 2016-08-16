@@ -1,45 +1,48 @@
 {
-  "name": "Graph",
-  "version": "1.0.0",
-  "engines": {
-      "node": "4.2.0"
-  },
-  "description": "This is a project for plotting graphs for mathematical equations. It is being built with SVG. Right now it is just a skeleton.",
+  "name": "graph",
+  "version": "0.0.1",
+  "description": "A simple mathematical plotting tool.",
   "main": "server.js",
-  "dependencies": {
-      "clear": "0.0.1",
-      "bower": "^1.7.2",
-      "express": "^4.13.4"
-  },
-  "devDependencies": {
-    "clear": "0.0.1",
-    "express": "^4.13.4",
-    "mocha": "latest",
-    "chai": "latest",
-    "phantomjs-prebuilt": "latest",
-    "mocha-phantomjs": "latest",
-    "jshint": "latest",
-    "gulp": "latest",
-    "gulp-mocha": "latest",
-    "gulp-jshint": "latest",
-    "gulp-watch": "latest",
-    "gulp-mocha-phantomjs": "latest"
-  },
   "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install",
-    "unit-test-client": "./node_modules/.bin/gulp unit-test-client",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "gulp test",
+    "serve": "gulp serve"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sayantanhore/Graph.git"
-  },
-  "keywords": [],
+  "keywords": [
+    "graph",
+    "display",
+    "SVG",
+    "mathematics"
+  ],
   "author": "Sayantan Hore",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sayantanhore/Graph/issues"
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.14.0",
+    "browserify": "^13.1.0",
+    "clear": "0.0.1",
+    "eslint": "^3.1.1",
+    "eslint-config-airbnb-base": "5.0.0",
+    "eslint-plugin-import": "^1.12.0",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-nodemon": "^2.1.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "jasmine-core": "^2.4.1",
+    "karma": "^1.1.2",
+    "karma-browserify": "^5.1.0",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-safari-launcher": "^1.0.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
   },
-  "homepage": "https://github.com/sayantanhore/Graph#readme"
+  "dependencies": {
+    "d3": "^4.2.1",
+    "express": "^4.14.0",
+    "jquery": "^3.1.0"
+  }
 }
