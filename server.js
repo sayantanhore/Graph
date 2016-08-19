@@ -14,7 +14,7 @@
   app.use('/dist', express.static(__dirname + '/dist'));
 
   app.get('/', function(req, res){
-		res.sendFile(__dirname + '/src/templates/index.html');
+		res.sendFile(__dirname + '/src/index.html');
 	});
 
   var server = app.listen(process.env.PORT || 3200, function(){

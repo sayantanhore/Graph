@@ -28,7 +28,7 @@ gulp.task('lint', () =>
 );
 
 gulp.task('sass', () =>
-  gulp.src('src/stylesheets/**/*.scss')
+  gulp.src('src/**/*.scss')
     .pipe(sourcemaps.init({ loadMaps: true }))
       .pipe(sass().on('error', sass.logError))
     .pipe(sourcemaps.write())
@@ -37,7 +37,10 @@ gulp.task('sass', () =>
 );
 
 gulp.task('bundle', () =>
-  browserify('./src/scripts/main.js')
+  browserify('./src/main.js')
+    .transform('babelify', {
+      presets: ['es2015']
+    })
     .bundle()
     .on('error', err => {
       errLog('Browserify', err);
@@ -65,7 +68,7 @@ gulp.task('serve', ['start-server'], () => {
 
   gulp.watch('./src/**/*.js', ['js-sync']);
   gulp.watch('./src/**/*.html').on('change', browserSync.reload);
-  gulp.watch('./src/stylesheets/**/*.scss', ['style-sync']);
+  gulp.watch('./src/**/*.scss', ['style-sync']);
 });
 
 gulp.task('js-sync', ['bundle'], () => {
@@ -99,7 +102,7 @@ gulp.task('build', ['lint', 'sass', 'bundle'], () => {
 });
 
 gulp.task('watch', () => {
-  gulp.watch('src/stylesheets/**/*.scss', ['sass']);
+  gulp.watch('src/**/*.scss', ['sass']);
   gulp.watch(['**/*.js', '!karma.conf.js', '!node_modules/**', '!dist/**'], ['lint']);
 });
 
