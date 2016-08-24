@@ -1,8 +1,14 @@
-//let $ = require('jquery');
+import angular from 'angular';
 import $ from 'jquery';
-//window.$ = $;
-let d3 = require('d3');
+import * as d3 from 'd3';
 
-$(document).ready(() => {
-  $('#container').css('background-color', 'red');
+// Module: app - Holds the application
+let graph = angular.module('graph', []);
+
+
+graph.directive('graphAppContainer', () => {
+  return {
+    restrict: 'E',
+    templateUrl: 'src/graph.app.container/graph.app.container.html'
+  }
 });

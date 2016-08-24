@@ -7,7 +7,7 @@
 	var app = express();
 	var path = require('path');
 
-  //app.use('/static', express.static(__dirname + '/static'));
+  app.use('/src', express.static(__dirname + '/src'));
 	app.use('/templates', express.static(__dirname + '/src/templates'));
   app.use('/vendor', express.static(__dirname + '/bower_components'));
   app.use('/scripts', express.static(__dirname + '/src/scripts'));
